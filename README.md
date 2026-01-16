@@ -1,59 +1,78 @@
-# AngularTodoApp
+# Angular Todo App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.6.
+Приложение для управления задачами, разработанное на Angular 21 с использованием PrimeNG.
 
-## Development server
+🔗 **[Демо](https://maxlogvinov.github.io/angular-todo-app/)**
 
-To start a local development server, run:
+## Возможности
 
-```bash
-ng serve
+- ✅ Создание, удаление и отметка задач как выполненных
+- 📂 Фильтрация задач по категориям (Учёба, Работа, Дом)
+- 🎯 Приоритеты задач (низкий, средний, высокий)
+- 📊 Статистика по задачам
+
+## Технологии
+
+- **Angular 21** — standalone компоненты, signals, новый control flow
+- **PrimeNG 21** — UI компоненты (Table, Dialog, Select, Button, Tag)
+- **TypeScript 5.9**
+- **ESLint + Prettier** — линтинг и форматирование кода
+
+## Ключевые особенности реализации
+
+### Signals
+
+Реактивное управление состоянием через Angular Signals.
+
+### Content Projection
+
+Компонент `<app-card>` с проекцией контента.
+
+### OnPush Change Detection
+
+Все компоненты используют `ChangeDetectionStrategy.OnPush` для оптимизации производительности.
+
+## Структура проекта
+
+```
+src/app/
+├── models/
+│   └── task.model.ts          # Интерфейсы и типы
+├── services/
+│   └── task.service.ts        # Сервис с signals для управления задачами
+├── components/
+│   ├── card/                  # Компонент с content projection
+│   └── task-form/             # Модальная форма создания задачи
+├── pages/
+│   ├── tasks/                 # Главная страница /tasks
+│   └── category/              # Страница фильтра /categories/:category
+├── app.routes.ts              # Конфигурация роутинга
+└── app.config.ts              # Конфигурация приложения
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Установка и запуск
 
 ```bash
-ng generate component component-name
+# Клонирование репозитория
+git clone https://github.com/MaxLogvinov/angular-todo-app.git
+cd angular-todo-app
+
+# Установка зависимостей
+npm install
+
+# Запуск dev-сервера
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Приложение будет доступно по адресу `http://localhost:4200`
 
-```bash
-ng generate --help
-```
+## Скрипты
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+| Команда            | Описание                      |
+| ------------------ | ----------------------------- |
+| `npm start`        | Запуск dev-сервера            |
+| `npm run build`    | Production сборка             |
+| `npm run lint`     | Проверка кода ESLint          |
+| `npm run lint:fix` | Автоисправление ошибок ESLint |
+| `npm run format`   | Форматирование кода Prettier  |
+| `npm run deploy`   | Деплой на GitHub Pages        |
