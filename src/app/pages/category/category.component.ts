@@ -1,4 +1,4 @@
-import { Component, inject, computed } from '@angular/core';
+import { Component, inject, computed, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule, DatePipe, TitleCasePipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -122,6 +122,7 @@ import { Category, Priority } from '../../models/task.model';
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryComponent {
   private route = inject(ActivatedRoute);
@@ -132,17 +133,16 @@ export class CategoryComponent {
     { initialValue: 'Учёба' as Category },
   );
 
-  // Computed signal для фильтрации задач
   filteredTasks = computed(() => {
     const cat = this.category();
     return this.taskService.tasks().filter((task) => task.category === cat);
   });
 
-  toggleComplete(id: number) {
+  toggleComplete(id: number): void {
     this.taskService.toggleComplete(id);
   }
 
-  deleteTask(id: number) {
+  deleteTask(id: number): void {
     this.taskService.deleteTask(id);
   }
 

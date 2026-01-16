@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,13 +8,13 @@ import { CommonModule } from '@angular/common';
   template: `
     <div class="card" [class.completed]="completed()">
       <div class="card-header">
-        <ng-content select="[card-header]"></ng-content>
+        <ng-content select="[card-header]" />
       </div>
       <div class="card-body">
-        <ng-content></ng-content>
+        <ng-content />
       </div>
       <div class="card-footer">
-        <ng-content select="[card-footer]"></ng-content>
+        <ng-content select="[card-footer]" />
       </div>
     </div>
   `,
@@ -57,6 +57,7 @@ import { CommonModule } from '@angular/common';
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
   completed = input<boolean>(false);

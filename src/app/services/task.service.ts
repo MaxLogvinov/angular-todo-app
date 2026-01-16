@@ -43,11 +43,11 @@ export class TaskService {
     };
   });
 
-  getTasksByCategory(category: Category) {
+  getTasksByCategory(category: Category): ReturnType<typeof computed<Task[]>> {
     return computed(() => this.tasksSignal().filter((task) => task.category === category));
   }
 
-  addTask(task: Omit<Task, 'id' | 'createdAt' | 'completed'>) {
+  addTask(task: Omit<Task, 'id' | 'createdAt' | 'completed'>): void {
     const newTask: Task = {
       ...task,
       id: Date.now(),
@@ -57,11 +57,11 @@ export class TaskService {
     this.tasksSignal.update((tasks) => [...tasks, newTask]);
   }
 
-  deleteTask(id: number) {
+  deleteTask(id: number): void {
     this.tasksSignal.update((tasks) => tasks.filter((t) => t.id !== id));
   }
 
-  toggleComplete(id: number) {
+  toggleComplete(id: number): void {
     this.tasksSignal.update((tasks) =>
       tasks.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t)),
     );

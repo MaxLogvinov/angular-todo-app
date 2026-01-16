@@ -1,4 +1,4 @@
-import { Component, inject, viewChild } from '@angular/core';
+import { Component, inject, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule, DatePipe, TitleCasePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TableModule } from 'primeng/table';
@@ -152,25 +152,26 @@ import { Task, Priority } from '../../models/task.model';
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TasksComponent {
   taskService = inject(TaskService);
 
   private taskForm = viewChild(TaskFormComponent);
 
-  openForm() {
+  openForm(): void {
     this.taskForm()?.open();
   }
 
-  onTaskCreated(task: Omit<Task, 'id' | 'createdAt' | 'completed'>) {
+  onTaskCreated(task: Omit<Task, 'id' | 'createdAt' | 'completed'>): void {
     this.taskService.addTask(task);
   }
 
-  toggleComplete(id: number) {
+  toggleComplete(id: number): void {
     this.taskService.toggleComplete(id);
   }
 
-  deleteTask(id: number) {
+  deleteTask(id: number): void {
     this.taskService.deleteTask(id);
   }
 

@@ -1,4 +1,4 @@
-import { Component, output } from '@angular/core';
+import { Component, output, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
@@ -14,9 +14,11 @@ import { Task, Category, Priority, CATEGORIES, PRIORITIES } from '../../models/t
   template: `
     <p-dialog
       header="Новая задача"
-      [(visible)]="visible"
+      [visible]="visible()"
+      (visibleChange)="visible.set($event)"
       [modal]="true"
       [style]="{ width: '400px' }"
+      [contentStyle]="{ overflow: 'visible' }"
     >
       <div class="form-group">
         <label for="title">Название</label>
@@ -36,6 +38,7 @@ import { Task, Category, Priority, CATEGORIES, PRIORITIES } from '../../models/t
           [(ngModel)]="selectedCategory"
           [options]="categories"
           placeholder="Выберите категорию"
+          appendTo="body"
           class="w-full"
         />
       </div>
@@ -47,6 +50,7 @@ import { Task, Category, Priority, CATEGORIES, PRIORITIES } from '../../models/t
           [(ngModel)]="selectedPriority"
           [options]="priorities"
           placeholder="Выберите приоритет"
+          appendTo="body"
           class="w-full"
         />
       </div>
@@ -75,12 +79,12 @@ import { Task, Category, Priority, CATEGORIES, PRIORITIES } from '../../models/t
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskFormComponent {
   taskCreated = output<Omit<Task, 'id' | 'createdAt' | 'completed'>>();
 
-  visible = false;
-
+  visible = signal(false);
   title = '';
   selectedCategory: Category | null = null;
   selectedPriority: Priority | null = null;
@@ -88,20 +92,20 @@ export class TaskFormComponent {
   categories = CATEGORIES;
   priorities = PRIORITIES;
 
-  open() {
-    this.visible = true;
+  open(): void {
     this.resetForm();
+    this.visible.set(true);
   }
 
-  close() {
-    this.visible = false;
+  close(): void {
+    this.visible.set(false);
   }
 
   isValid(): boolean {
     return !!(this.title.trim() && this.selectedCategory && this.selectedPriority);
   }
 
-  submit() {
+  submit(): void {
     if (this.isValid()) {
       this.taskCreated.emit({
         title: this.title.trim(),
@@ -112,7 +116,7 @@ export class TaskFormComponent {
     }
   }
 
-  private resetForm() {
+  private resetForm(): void {
     this.title = '';
     this.selectedCategory = null;
     this.selectedPriority = null;
