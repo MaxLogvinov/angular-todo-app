@@ -6,4 +6,5 @@ export const routes: Routes = [
   { path: '', redirectTo: 'tasks', pathMatch: 'full' },
   { path: 'tasks', component: TasksComponent },
   { path: 'categories/:category', component: CategoryComponent },
+  { path: '**', redirectTo: 'tasks' },
 ];
