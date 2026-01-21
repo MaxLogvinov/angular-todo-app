@@ -11,74 +11,8 @@ import { Task, Category, Priority, CATEGORIES, PRIORITIES } from '../../models/t
   selector: 'app-task-form',
   standalone: true,
   imports: [CommonModule, FormsModule, DialogModule, ButtonModule, InputTextModule, SelectModule],
-  template: `
-    <p-dialog
-      header="Новая задача"
-      [visible]="visible()"
-      (visibleChange)="visible.set($event)"
-      [modal]="true"
-      [style]="{ width: '400px' }"
-      [contentStyle]="{ overflow: 'visible' }"
-    >
-      <div class="form-group">
-        <label for="title">Название</label>
-        <input
-          pInputText
-          id="title"
-          [(ngModel)]="title"
-          placeholder="Введите название задачи"
-          class="w-full"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="category">Категория</label>
-        <p-select
-          id="category"
-          [(ngModel)]="selectedCategory"
-          [options]="categories"
-          placeholder="Выберите категорию"
-          appendTo="body"
-          class="w-full"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="priority">Приоритет</label>
-        <p-select
-          id="priority"
-          [(ngModel)]="selectedPriority"
-          [options]="priorities"
-          placeholder="Выберите приоритет"
-          appendTo="body"
-          class="w-full"
-        />
-      </div>
-
-      <ng-template pTemplate="footer">
-        <p-button label="Отмена" severity="secondary" (click)="close()" />
-        <p-button label="Создать" (click)="submit()" [disabled]="!isValid()" />
-      </ng-template>
-    </p-dialog>
-  `,
-  styles: [
-    `
-      .form-group {
-        margin-bottom: 1rem;
-      }
-
-      .form-group label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-        color: #333;
-      }
-
-      .w-full {
-        width: 100%;
-      }
-    `,
-  ],
+  templateUrl: './task-form.component.html',
+  styleUrls: ['./task-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskFormComponent {

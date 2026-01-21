@@ -51,7 +51,7 @@
               "sourceMap": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular/build:dev-server",
@@ -60,7 +60,8 @@
               "buildTarget": "angular-todo-app:build:production"
             },
             "development": {
-              "buildTarget": "angular-todo-app:build:development"
+              "buildTarget": "angular-todo-app:build:development",
+              "host": "0.0.0.0"
             }
           },
           "defaultConfiguration": "development"

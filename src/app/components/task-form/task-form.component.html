@@ -1,0 +1,48 @@
+<p-dialog
+  header="Новая задача"
+  [visible]="visible()"
+  (visibleChange)="visible.set($event)"
+  [modal]="true"
+  [style]="{ width: '400px' }"
+  [contentStyle]="{ overflow: 'visible' }"
+>
+  <div class="form-group">
+    <label for="title">Название</label>
+    <input
+      pInputText
+      id="title"
+      [(ngModel)]="title"
+      placeholder="Введите название задачи"
+      class="w-full"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="category">Категория</label>
+    <p-select
+      id="category"
+      [(ngModel)]="selectedCategory"
+      [options]="categories"
+      placeholder="Выберите категорию"
+      appendTo="body"
+      class="w-full"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="priority">Приоритет</label>
+    <p-select
+      id="priority"
+      [(ngModel)]="selectedPriority"
+      [options]="priorities"
+      placeholder="Выберите приоритет"
+      appendTo="body"
+      class="w-full"
+    />
+  </div>
+
+  <ng-template pTemplate="footer">
+    <p-button label="Отмена" severity="secondary" (click)="close()" />
+    <p-button label="Создать" (click)="submit()" [disabled]="!isValid()" />
+  </ng-template>
+</p-dialog>

@@ -1,0 +1,33 @@
+.category-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  margin: 0.5rem 0;
+  color: #333;
+}
+
+.page-header p {
+  color: #666;
+}
+
+.completed-row {
+  opacity: 0.6;
+}
+
+.completed-text {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.empty-message {
+  text-align: center;
+  padding: 2rem;
+  color: #888;
+}
