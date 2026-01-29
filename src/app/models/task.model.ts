@@ -7,8 +7,20 @@ export interface Task {
   createdAt: Date;
 }
 
-export type Category = 'Учёба' | 'Работа' | 'Дом';
-export type Priority = 'низкий' | 'средний' | 'высокий';
+export type Category = 'study' | 'work' | 'home';
+export type Priority = 'low' | 'medium' | 'high';
 
-export const CATEGORIES: Category[] = ['Учёба', 'Работа', 'Дом'];
-export const PRIORITIES: Priority[] = ['низкий', 'средний', 'высокий'];
+export const CATEGORIES: Category[] = ['study', 'work', 'home'];
+export const PRIORITIES: Priority[] = ['low', 'medium', 'high'];
+
+export const CATEGORY_LABELS: Record<Category, string> = {
+  study: 'Учёба',
+  work: 'Работа',
+  home: 'Дом',
+};
+
+export const PRIORITY_LABELS: Record<Priority, string> = {
+  low: 'Низкий',
+  medium: 'Средний',
+  high: 'Высокий',
+};

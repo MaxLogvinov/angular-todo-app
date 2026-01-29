@@ -2,19 +2,31 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+
+  @media (max-width: 850px) {
+    padding: 1rem;
+  }
 }
 
 .page-header {
   margin-bottom: 2rem;
-}
 
-.page-header h1 {
-  margin: 0.5rem 0;
-  color: #333;
-}
+  @media (max-width: 850px) {
+    text-align: center;
+  }
 
-.page-header p {
-  color: #666;
+  h1 {
+    margin: 0.5rem 0;
+    color: #333;
+
+    @media (max-width: 850px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  p {
+    color: #666;
+  }
 }
 
 .completed-row {
@@ -30,4 +42,44 @@
   text-align: center;
   padding: 2rem;
   color: #888;
+}
+
+:host ::ng-deep {
+  .p-datatable {
+    width: 100%;
+    min-width: 50rem;
+
+    @media (max-width: 850px) {
+      min-width: unset;
+
+      .p-datatable-thead {
+        display: none;
+      }
+
+      .p-datatable-tbody {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        > tr {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          border-bottom: 1px solid #e5e7eb;
+          padding: 1rem 0;
+          width: 100%;
+
+          > td {
+            display: flex;
+            justify-content: center;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
 }

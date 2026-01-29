@@ -14,7 +14,6 @@
 
   <p-table
     [value]="taskService.tasks()"
-    [tableStyle]="{ 'min-width': '50rem' }"
     styleClass="p-datatable-striped"
   >
     <ng-template pTemplate="header">
@@ -44,13 +43,13 @@
         </td>
         <td>
           <a [routerLink]="['/categories', task.category]" class="category-link">
-            {{ task.category }}
+            {{ task.category | categoryLabel }}
           </a>
         </td>
         <td>
           <p-tag
-            [value]="task.priority | titlecase"
-            [severity]="getPrioritySeverity(task.priority)"
+            [value]="task.priority | priorityLabel"
+            [severity]="task.priority | prioritySeverity"
           />
         </td>
         <td>{{ task.createdAt | date: 'dd.MM.yyyy HH:mm' }}</td>

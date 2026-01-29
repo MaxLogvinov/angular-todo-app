@@ -1,14 +1,23 @@
 .form-group {
   margin-bottom: 1rem;
-}
 
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #333;
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+  }
 }
 
 .w-full {
   width: 100%;
+}
+
+:host ::ng-deep {
+  .p-dialog {
+    @media (max-width: 480px) {
+      width: 95vw !important;
+      max-width: 95vw;
+    }
+  }
 }

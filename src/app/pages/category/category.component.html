@@ -1,13 +1,12 @@
 <div class="category-page">
   <header class="page-header">
     <p-button icon="pi pi-arrow-left" label="Назад" [text]="true" routerLink="/tasks" />
-    <h1>📁 Категория: {{ category() }}</h1>
+    <h1>📁 Категория: {{ category() | categoryLabel }}</h1>
     <p>Найдено задач: {{ filteredTasks().length }}</p>
   </header>
 
   <p-table
     [value]="filteredTasks()"
-    [tableStyle]="{ 'min-width': '50rem' }"
     styleClass="p-datatable-striped"
   >
     <ng-template pTemplate="header">
@@ -36,8 +35,8 @@
         </td>
         <td>
           <p-tag
-            [value]="task.priority | titlecase"
-            [severity]="getPrioritySeverity(task.priority)"
+            [value]="task.priority | priorityLabel"
+            [severity]="task.priority | prioritySeverity"
           />
         </td>
         <td>{{ task.createdAt | date: 'dd.MM.yyyy HH:mm' }}</td>

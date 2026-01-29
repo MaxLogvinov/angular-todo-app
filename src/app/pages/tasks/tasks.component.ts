@@ -1,12 +1,15 @@
 import { Component, inject, viewChild, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule, DatePipe, TitleCasePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { TaskFormComponent } from '../../components/task-form/task-form.component';
 import { TaskService } from '../../services/task.service';
-import { Task, Priority } from '../../models/task.model';
+import { Task } from '../../models/task.model';
+import { PrioritySeverityPipe } from '../../pipes/priority-severity.pipe';
+import { PriorityLabelPipe } from '../../pipes/priority-label.pipe';
+import { CategoryLabelPipe } from '../../pipes/category-label.pipe';
 
 @Component({
   selector: 'app-tasks',
@@ -19,7 +22,9 @@ import { Task, Priority } from '../../models/task.model';
     TagModule,
     TaskFormComponent,
     DatePipe,
-    TitleCasePipe,
+    PrioritySeverityPipe,
+    PriorityLabelPipe,
+    CategoryLabelPipe,
   ],
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss'],
@@ -44,14 +49,5 @@ export class TasksComponent {
 
   deleteTask(id: number): void {
     this.taskService.deleteTask(id);
-  }
-
-  getPrioritySeverity(priority: Priority): 'success' | 'warn' | 'danger' {
-    const map = {
-      низкий: 'success' as const,
-      средний: 'warn' as const,
-      высокий: 'danger' as const,
-    };
-    return map[priority];
   }
 }

@@ -5,7 +5,15 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
-import { Task, Category, Priority, CATEGORIES, PRIORITIES } from '../../models/task.model';
+import {
+  Task,
+  Category,
+  Priority,
+  CATEGORIES,
+  PRIORITIES,
+  CATEGORY_LABELS,
+  PRIORITY_LABELS,
+} from '../../models/task.model';
 
 @Component({
   selector: 'app-task-form',
@@ -23,8 +31,8 @@ export class TaskFormComponent {
   selectedCategory: Category | null = null;
   selectedPriority: Priority | null = null;
 
-  categories = CATEGORIES;
-  priorities = PRIORITIES;
+  categories = CATEGORIES.map((c) => ({ label: CATEGORY_LABELS[c], value: c }));
+  priorities = PRIORITIES.map((p) => ({ label: PRIORITY_LABELS[p], value: p }));
 
   open(): void {
     this.resetForm();
